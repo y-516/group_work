@@ -1,0 +1,15 @@
+<h1>Tops#index</h1>
+<p>Find me in app/views/tops/index.html.erb</p>
+
+<h1>ブログ一覧</h1>
+
+<% @blog.each do |blog| %>
+  <tr>
+    <td><%= blog.user.name %></td>
+    <td><%= blog.title %></td>
+    <td><%= blog.content %></td>
+    <td><%= link_to "詳細ページ", blog_path(blog.id) %></td>
+  </tr>
+<% end %>
+
+<p><%= link_to "投稿する", new_blog_path %>

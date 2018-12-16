@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :ensure_correct_user, {only: %i[ edit update destroy]}
+
   def new
     @user = User.new
   end
@@ -29,7 +31,17 @@ class UsersController < ApplicationController
     end
   end
 
+  private
+
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
+
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    if current_user.id != @user.id
+      redirect_to tops_index_path, alert: "権限がありません"
+    end
+  end
+
 end

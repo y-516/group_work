@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :ensure_correct_user, {only: %i[ edit update destroy]}
+  before_action :ensure_correct_user, {only: %i[ edit update destroy show]}
 
   def new
     @user = User.new

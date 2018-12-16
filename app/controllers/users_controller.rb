@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :ensure_correct_user, {only: %i[ edit update destroy show]}
+  before_action :ensure_correct_user, {only: %i[edit update show]}
+  before_action :set_user, {only: %i[show edit update]}
 
   def new
     @user = User.new
@@ -42,6 +43,10 @@ class UsersController < ApplicationController
     if current_user.id != @user.id
       redirect_to tops_index_path, alert: "権限がありません"
     end
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
 end

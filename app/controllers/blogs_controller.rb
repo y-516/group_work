@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   before_action:set_blog,only:[:show,:edit,:update]
+  before_action:current_user_check,only:[:edit,:update]
   def new
     @blog = Blog.new
   end
@@ -34,5 +35,11 @@ class BlogsController < ApplicationController
 
   def set_blog
     @blog = Blog.find(params[:id])
+  end
+
+  def current_user_check
+    if current_user.id != @blog.id
+      redirect_to tops_index_path, alert: "権限がありません"
+    end
   end
 end

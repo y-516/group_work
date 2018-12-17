@@ -1,0 +1,12 @@
+<h1>ブログ投稿画面</h1>
+<%= form_with(model:Blog.new,local: true) do |f|%>
+
+<%=f.label :title %>
+<%=f.text_field :title %>
+
+<%=f.label :content %>
+<%=f.text_field :content %>
+
+<%= f.submit "登録"%>
+
+<%end%>

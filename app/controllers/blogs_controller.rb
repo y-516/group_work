@@ -11,6 +11,10 @@ class BlogsController < ApplicationController
      render 'new'
   end
 
+  def show
+    @blog = Blog.find(params[:id])
+  end
+
   private
 
   def blog_params

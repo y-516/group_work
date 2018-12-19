@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   resources :users
   resources :blogs
 
-
-  root 'tops#index'
   get 'tops/index'
 
 

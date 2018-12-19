@@ -1,12 +1,13 @@
 class BlogsController < ApplicationController
   before_action:set_blog,only:[:show,:edit,:update]
-  before_action:current_user_check,only:[:edit,:update]
+  before_action:current_user_check,only:[:new,:create,:show,:edit,:update]
   def new
     @blog = Blog.new
   end
 
   def create
     @blog = Blog.new(blog_params)
+    @blog.user_id = current_user.id
     if @blog.save
      redirect_to tops_index_path,notice:"ブログを作成しました"
     else
@@ -39,8 +40,9 @@ class BlogsController < ApplicationController
   end
 
   def current_user_check
-    if current_user.id != @blog.id
-      redirect_to tops_index_path, alert: "権限がありません"
+    if current_user.nil?
+      redirect_to tops_index_path, alert: "ログインしてください"
     end
   end
+
 end

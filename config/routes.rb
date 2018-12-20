@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :users
   resources :blogs
 
-  get 'tops/index'
-
+  resources :tops, only: [:index]
 
 end

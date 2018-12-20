@@ -9,7 +9,7 @@ class BlogsController < ApplicationController
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
     if @blog.save
-     redirect_to tops_index_path,notice:"ブログを作成しました"
+     redirect_to tops_path,notice:"ブログを作成しました"
     else
      render 'new'
     end
@@ -41,7 +41,7 @@ class BlogsController < ApplicationController
 
   def current_user_check
     if current_user.nil?
-      redirect_to tops_index_path, alert: "ログインしてください"
+      redirect_to tops_path, alert: "ログインしてください"
     end
   end
 

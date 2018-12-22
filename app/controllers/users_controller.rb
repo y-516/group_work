@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to tops_index_path
+      redirect_to tops_path
     else
       render 'edit'
     end
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   def ensure_correct_user
     @user = User.find(params[:id])
     if current_user.id != @user.id
-      redirect_to tops_index_path, alert: "権限がありません"
+      redirect_to tops_path, alert: "権限がありません"
     end
   end
 

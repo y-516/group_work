@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
-  before_action:set_blog,only:[:show,:edit,:update]
-  before_action:current_user_check,only:[:new,:create,:show,:edit,:update]
+  before_action:set_blog,only:[:show,:edit,:update,:destroy]
+  before_action:current_user_check,only:[:new,:create,:show,:edit,:update,:destroy]
   def new
     @blog = Blog.new
   end
@@ -27,6 +27,11 @@ class BlogsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @blog.destroy
+    redirect_to tops_path,notice:"ブログを削除しました"
   end
 
   private
